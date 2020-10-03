@@ -5,6 +5,7 @@ const bookmarkForm = document.getElementById('bookmark-form');
 const websiteNameEl= document.getElementById('Website-name');
 const websiteUrlEl= document.getElementById('Website-url');
 const bookmarksContainer = document.getElementById('bookmarks-container');
+let bookmarks = [];
 
 
 // show modal , foucs on input 
@@ -41,6 +42,25 @@ function validate(nameValue,urlValue){
 
 }
 
+// Fetch bookmarks from local storage if available
+
+function fetchBookmarks(){
+    // get bookmarks from local storage if available
+    if(localStorage.getItem('bookmarks')){
+        bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
+    }else{
+        // create bookmarks array in localstorage
+        bookmarks = [
+            {
+                name:'Suprit Design',
+                url:'https//suprit.design',
+            },
+        ];
+        localStorage.setItem('bookmarks',JSON.stringify(bookmarks));
+    }
+    console.log(bookmarks);
+}
+
 
 // handle data from form
 function storeBookmark(e){
@@ -54,8 +74,22 @@ function storeBookmark(e){
     if(!validate(nameValue,urlValue)){
         return false;
     }
+
+    const bookmark = {
+        name:nameValue,
+        url:urlValue,
+    };
+
+    bookmarks.push(bookmark);
+    localStorage.setItem('bookmarks',JSON.stringify(bookmarks));
+    fetchBookmarks();
+    bookmarkForm.reset();
+    websiteNameEl.focus();
 }
 
 
 // Event listners
 bookmarkForm.addEventListener('submit',storeBookmark);
+
+// on load , fetch bookmarks
+fetchBookmarks();
