@@ -5,6 +5,7 @@ const bookmarkForm = document.getElementById('bookmark-form');
 const websiteNameEl= document.getElementById('Website-name');
 const websiteUrlEl= document.getElementById('Website-url');
 const bookmarksContainer = document.getElementById('bookmarks-container');
+const searchBookmark = document.getElementById('search-bookmark');
 let bookmarks = [];
 
 
@@ -50,7 +51,7 @@ function buildBookmarks(){
     const item = document.createElement('div');
     item.classList.add('item');
     const closeIcon = document.createElement('i');
-    closeIcon.classList.add('fas','fa-times');
+    closeIcon.classList.add('fas','fa-trash');
     closeIcon.setAttribute('title','Delete Bookmark');
     closeIcon.setAttribute('onclick',`deleteBookmark('${url}')`);
     // Favicon  / Link container

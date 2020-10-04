@@ -10,6 +10,9 @@
 <body>
     <!-- open modal -->
     <h1 id="show-modal">Add Bookmark</h1>
+    <div class="parent">
+        <input type='text' class="search-input" id='search-bookmark'placeholder="Search">
+    </div>
     <!-- Bookamarks -->
     <div class="container" id="bookmarks-container">
        
@@ -40,5 +43,19 @@
     </div>
     <!-- Script -->
     <script src="script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        // Search from bookmark list
+        $("#search-bookmark").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $(".container > .item").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+
+      });
+    </script>
+
 </body>
 </html>

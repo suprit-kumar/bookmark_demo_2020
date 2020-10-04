@@ -27,6 +27,17 @@ h1{
   margin: 20px auto 10px;
   user-select: none;
 }
+.parent {
+  display: grid;
+  place-items: center;
+}
+
+.search-input{
+  height: 36px;
+  width: auto;
+  border-radius: 4px;
+  text-align: center;
+}
 
 h1:hover{
   background: rgba(0,0,0,0.8);
@@ -70,7 +81,7 @@ a:active{
 }
 
 
-.fa-times{
+.fa-trash{
   float: right;
   cursor: pointer;
   z-index: 2;
@@ -139,7 +150,9 @@ a:active{
   color:white;
   padding: 15px;
 }
-
+.search-input{
+  margin: 0;
+}
 h3{
   margin: 0;
 }
