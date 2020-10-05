@@ -90,8 +90,8 @@ function fetchBookmarks(){
         // create bookmarks array in localstorage
         bookmarks = [
             {
-                name:'Suprit Design',
-                url:'https//suprit.design',
+                name:'Google',
+                url:'https//google.com',
             },
         ];
         localStorage.setItem('bookmarks',JSON.stringify(bookmarks));
