@@ -32,6 +32,10 @@ h1{
   place-items: center;
 }
 
+.count-bookmarks{
+  color: white;
+}
+
 .search-input{
   height: 36px;
   width: auto;

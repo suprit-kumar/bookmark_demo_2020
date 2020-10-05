@@ -6,6 +6,7 @@ const websiteNameEl= document.getElementById('Website-name');
 const websiteUrlEl= document.getElementById('Website-url');
 const bookmarksContainer = document.getElementById('bookmarks-container');
 const searchBookmark = document.getElementById('search-bookmark');
+const countBookmarks = document.getElementById('count-bookmarksEl');
 let bookmarks = [];
 
 
@@ -45,6 +46,8 @@ function validate(nameValue,urlValue){
 
 // Build bookmarks DOM
 function buildBookmarks(){
+    // Remove all bookmarks elements
+    bookmarksContainer.textContent = '';
     bookmarks.forEach((bookmark)=>{
         const {name , url } = bookmark;
     //    Item
@@ -64,12 +67,15 @@ function buildBookmarks(){
     link.setAttribute('href',`${url}`);
     link.setAttribute('target','_blank');
     link.textContent = name;
+    const bookmarkLength = bookmarks.length;
+    countBookmarks.textContent = bookmarkLength;
     // Append to bookmark conatiner
 
     linkInfo.append(favicon,link);
     item.append(closeIcon,linkInfo);
     bookmarksContainer.appendChild(item);
     });
+    
 }
 
 
@@ -91,6 +97,20 @@ function fetchBookmarks(){
         localStorage.setItem('bookmarks',JSON.stringify(bookmarks));
     }
     buildBookmarks();
+}
+
+
+// Delete bookmark
+
+function deleteBookmark(url){
+    bookmarks.forEach((bookmark,i)=>{
+        if(bookmark.url === url) {
+            bookmarks.splice(i,1);
+        }
+    });
+    // Update bookmarks array in localStorage and re-populate the DOM
+    localStorage.setItem('bookmarks',JSON.stringify(bookmarks));
+    fetchBookmarks();
 }
 
 
